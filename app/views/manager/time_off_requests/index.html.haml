@@ -1,0 +1,29 @@
+- content_for :title, "Team Time-Off Requests"
+
+%h1.text-2xl.font-semibold.mb-4 Team Time-Off Requests
+
+%table.min-w-full.divide-y.divide-gray-700.mt-4
+  %thead
+    %tr
+      %th Employee
+      %th Type
+      %th Start
+      %th End
+      %th Status
+      %th Actions
+  %tbody.divide-y.divide-gray-800
+    - if @time_off_requests.any?
+      - @time_off_requests.each do |r|
+        %tr
+          %td= r.user.full_name.presence || r.user.email
+          %td= r.time_off_type.name
+          %td= r.start_date
+          %td= r.end_date
+          %td= status_badge(r.status)
+          %td
+            - if r.pending?
+              = button_to "Approve", approve_time_off_request_path(r), method: :post, class: "px-2 py-1 bg-green-600 text-white rounded"
+              = button_to "Deny", deny_time_off_request_path(r), method: :post, class: "ml-2 px-2 py-1 bg-red-600 text-white rounded"
+    - else
+      %tr
+        %td{ colspan: 6, class: "text-center text-gray-300 py-6" } No team requests found.

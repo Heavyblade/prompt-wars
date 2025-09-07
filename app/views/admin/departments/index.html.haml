@@ -1,0 +1,22 @@
+- content_for :title, "Departments"
+
+%h1.text-2xl.font-semibold.mb-4 Departments
+
+%div.mb-4
+  = link_to "New Department", new_admin_department_path, class: "px-3 py-2 bg-blue-600 text-white rounded"
+
+%table.min-w-full.divide-y.divide-gray-700.mt-4
+  %thead
+    %tr
+      %th Name
+      %th Manager
+      %th Actions
+  %tbody.divide-y.divide-gray-800
+    - @departments.each do |d|
+      %tr
+        %td= d.name
+        %td= d.manager&.full_name || d.manager&.email
+        %td
+          = link_to "Edit", edit_admin_department_path(d), class: "text-blue-500"
+          = link_to "Delete", admin_department_path(d), data: { turbo_method: :delete, turbo_confirm: "Delete department?" }, class: "ml-2 text-red-500"
+

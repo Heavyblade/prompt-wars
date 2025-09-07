@@ -10,4 +10,32 @@ Rails.application.routes.draw do
   # get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
 
   root "static#index"
+
+  resources :time_off_requests do
+    member do
+      post :approve
+      post :deny
+    end
+  end
+
+  namespace :manager do
+    resources :time_off_requests, only: [:index]
+  end
+
+  namespace :admin do
+    resources :time_off_requests, only: [:index]
+    resources :users
+    resources :departments
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :time_off_requests, only: [:index, :show, :create] do
+        member do
+          post :approve
+          post :deny
+        end
+      end
+    end
+  end
 end

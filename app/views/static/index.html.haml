@@ -1,2 +1,30 @@
-#main.mx-auto.p-6.bg-gray-800.dark:text-white
-  %h1 Hello World!
+#main.mx-auto.dark:text-white
+  %h1.text-3xl.font-bold.mb-6 Welcome
+  - if signed_in?
+    %p.mb-6.text-gray-300 Hello,
+      %strong= current_user.full_name.presence || current_user.email
+      = ", your role is "
+      %span.inline-block.rounded-full.text-xs.px-2.py-1.bg-gray-700= current_user.role.humanize
+
+    .grid.grid-cols-1.md:grid-cols-3.gap-4
+      .p-4.bg-gray-700.rounded
+        %h2.font-semibold.mb-2 My Requests
+        %p.text-sm.text-gray-300 Submit and track your time off.
+        = link_to "View", time_off_requests_path, class: "mt-2 inline-block px-3 py-2 bg-blue-600 text-white rounded"
+        = link_to "New", new_time_off_request_path, class: "mt-2 ml-2 inline-block px-3 py-2 bg-green-600 text-white rounded"
+
+      - if current_user.manager?
+        .p-4.bg-gray-700.rounded
+          %h2.font-semibold.mb-2 Team Requests
+          %p.text-sm.text-gray-300 Review and approve your team’s requests.
+          = link_to "Open", manager_time_off_requests_path, class: "mt-2 inline-block px-3 py-2 bg-blue-600 text-white rounded"
+
+      - if current_user.admin?
+        .p-4.bg-gray-700.rounded
+          %h2.font-semibold.mb-2 Admin
+          %p.text-sm.text-gray-300 Manage users and departments.
+          = link_to "Users", admin_users_path, class: "mt-2 inline-block px-3 py-2 bg-blue-600 text-white rounded"
+          = link_to "Departments", admin_departments_path, class: "mt-2 ml-2 inline-block px-3 py-2 bg-blue-600 text-white rounded"
+  - else
+    %p.text-gray-300 Please sign in to manage time-off requests.
+    = link_to "Sign in", sign_in_path, class: "mt-2 inline-block px-3 py-2 bg-blue-600 text-white rounded"

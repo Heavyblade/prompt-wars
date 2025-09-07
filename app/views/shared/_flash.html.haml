@@ -1,0 +1,6 @@
+- if flash.any?
+  - flash.each do |key, value|
+    - next if value.blank?
+    %div{ class: "mb-4 px-4 py-3 rounded #{flash_color(key.to_s)}" }
+      = value
+

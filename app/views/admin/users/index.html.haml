@@ -1,0 +1,28 @@
+- content_for :title, "Users"
+
+%h1.text-2xl.font-semibold.mb-4 Users
+
+%div.mb-4
+  = link_to "New User", new_admin_user_path, class: "px-3 py-2 bg-blue-600 text-white rounded"
+
+%table.min-w-full.divide-y.divide-gray-700.mt-4
+  %thead
+    %tr
+      %th Email
+      %th Name
+      %th Role
+      %th Department
+      %th Manager
+      %th Actions
+  %tbody.divide-y.divide-gray-800
+    - @users.each do |u|
+      %tr
+        %td= u.email
+        %td= u.full_name.presence || "-"
+        %td= u.role
+        %td= u.department&.name
+        %td= u.manager&.full_name || u.manager&.email
+        %td
+          = link_to "Edit", edit_admin_user_path(u), class: "text-blue-500"
+          = link_to "Delete", admin_user_path(u), data: { turbo_method: :delete, turbo_confirm: "Delete user?" }, class: "ml-2 text-red-500"
+

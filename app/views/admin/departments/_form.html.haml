@@ -1,0 +1,17 @@
+= form_with model: [:admin, @department] do |f|
+  - if @department.errors.any?
+    %div.bg-red-900.text-red-100.p-3.rounded.mb-4
+      %ul
+        - @department.errors.full_messages.each do |m|
+          %li= m
+
+  .mb-4
+    = f.label :name
+    = f.text_field :name, class: "border rounded px-3 py-2 w-full"
+
+  .mb-4
+    = f.label :manager_id, "Manager"
+    = f.collection_select :manager_id, User.where(role: :manager).order(:email), :id, :email, include_blank: true, class: "border rounded px-3 py-2 w-full"
+
+  = f.submit class: "px-3 py-2 bg-blue-600 text-white rounded"
+

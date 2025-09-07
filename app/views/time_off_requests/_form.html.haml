@@ -1,0 +1,25 @@
+= form_with model: @time_off_request do |f|
+  - if @time_off_request.errors.any?
+    %div.bg-red-900.text-red-100.p-3.rounded.mb-4
+      %p.font-semibold= pluralize(@time_off_request.errors.count, "error") + " prohibited this request from being saved:"
+      %ul.list-disc.list-inside
+        - @time_off_request.errors.full_messages.each do |msg|
+          %li= msg
+
+  .mb-4
+    = f.label :time_off_type_id, "Type", class: "block mb-1"
+    = f.collection_select :time_off_type_id, TimeOffType.active.order(:name), :id, :name, {}, class: "border rounded px-3 py-2 w-full"
+
+  .mb-4
+    = f.label :start_date, class: "block mb-1"
+    = f.date_field :start_date, min: Date.current, class: "border rounded px-3 py-2 w-full"
+
+  .mb-4
+    = f.label :end_date, class: "block mb-1"
+    = f.date_field :end_date, min: Date.current, class: "border rounded px-3 py-2 w-full"
+
+  .mb-4
+    = f.label :reason, class: "block mb-1"
+    = f.text_area :reason, rows: 3, class: "border rounded px-3 py-2 w-full"
+
+  = f.submit "Submit", class: "px-3 py-2 bg-blue-600 text-white rounded"
