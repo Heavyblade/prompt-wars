@@ -7,7 +7,7 @@ image: promptwars/promptwars
 # Deploy to these servers.
 servers:
   web:
-    - 137.184.75.69
+    - 64.225.15.252
   # job:
   #   hosts:
   #     - 192.168.0.1
