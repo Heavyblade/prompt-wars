@@ -1,6 +1,6 @@
 - content_for :title, "Time-Off Request"
 
-%h1.text-2xl.font-semibold.mb-4 Time-Off Request
+%h1.text-2xl.font-semibold.mb-4.text-white Time-Off Request
 
 %div
   %p
@@ -20,10 +20,10 @@
       = @time_off_request.reason
 
 %div.mt-4
-  = link_to "Back", time_off_requests_path, class: "text-blue-500"
+  = link_to "Back", time_off_requests_path, class: "text-blue-400 hover:text-blue-300"
   - if current_user && @time_off_request.pending?
     - if manager_of?(@time_off_request.user) && current_user.id != @time_off_request.user_id
-      = button_to "Approve", approve_time_off_request_path(@time_off_request), method: :post, class: "ml-4 px-3 py-2 bg-green-600 text-white rounded"
-      = button_to "Deny", deny_time_off_request_path(@time_off_request), method: :post, class: "ml-2 px-3 py-2 bg-red-600 text-white rounded"
+      = button_to "Approve", approve_time_off_request_path(@time_off_request), method: :post, class: "ml-4 px-3 py-2 bg-green-600 hover:bg-green-500 text-white rounded"
+      = button_to "Deny", deny_time_off_request_path(@time_off_request), method: :post, class: "ml-2 px-3 py-2 bg-red-600 hover:bg-red-500 text-white rounded"
     - elsif @time_off_request.user_id == current_user.id
-      = link_to "Cancel", time_off_request_path(@time_off_request), data: { turbo_method: :delete, turbo_confirm: "Cancel this request?" }, class: "ml-4 text-red-500"
+      = link_to "Cancel", time_off_request_path(@time_off_request), data: { turbo_method: :delete, turbo_confirm: "Cancel this request?" }, class: "ml-4 text-red-400 hover:text-red-300"

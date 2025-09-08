@@ -1,28 +1,28 @@
 - content_for :title, "Users"
 
-%h1.text-2xl.font-semibold.mb-4 Users
+%h1.text-2xl.font-semibold.mb-4.text-white Users
 
 %div.mb-4
-  = link_to "New User", new_admin_user_path, class: "px-3 py-2 bg-blue-600 text-white rounded"
+  = link_to "New User", new_admin_user_path, class: "px-3 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded"
 
-%table.min-w-full.divide-y.divide-gray-700.mt-4
-  %thead
-    %tr
-      %th Email
-      %th Name
-      %th Role
-      %th Department
-      %th Manager
-      %th Actions
-  %tbody.divide-y.divide-gray-800
-    - @users.each do |u|
+.relative.overflow-x-auto.shadow-md.sm:rounded-lg
+  %table.w-full.text-sm.text-left.text-gray-400.dark:text-gray-300
+    %thead.text-xs.uppercase.bg-gray-50.dark:bg-gray-700.dark:text-gray-400
       %tr
-        %td= u.email
-        %td= u.full_name.presence || "-"
-        %td= u.role
-        %td= u.department&.name
-        %td= u.manager&.full_name || u.manager&.email
-        %td
-          = link_to "Edit", edit_admin_user_path(u), class: "text-blue-500"
-          = link_to "Delete", admin_user_path(u), data: { turbo_method: :delete, turbo_confirm: "Delete user?" }, class: "ml-2 text-red-500"
-
+        %th.px-6.py-3 Email
+        %th.px-6.py-3 Name
+        %th.px-6.py-3 Role
+        %th.px-6.py-3 Department
+        %th.px-6.py-3 Manager
+        %th.px-6.py-3 Actions
+    %tbody
+      - @users.each do |u|
+        %tr.border-b.dark:border-gray-700.odd:bg-white.odd:dark:bg-gray-900.even:bg-gray-50.even:dark:bg-gray-800
+          %td.px-6.py-4.font-medium.text-gray-900.dark:text-white= u.email
+          %td.px-6.py-4= u.full_name.presence || "-"
+          %td.px-6.py-4= u.role
+          %td.px-6.py-4= u.department&.name
+          %td.px-6.py-4= u.manager&.full_name || u.manager&.email
+          %td.px-6.py-4
+            = link_to "Edit", edit_admin_user_path(u), class: "text-blue-400 hover:text-blue-300"
+            = link_to "Delete", admin_user_path(u), data: { turbo_method: :delete, turbo_confirm: "Delete user?" }, class: "ml-2 text-red-400 hover:text-red-300"

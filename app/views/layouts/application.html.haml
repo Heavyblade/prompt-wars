@@ -1,5 +1,5 @@
 !!!
-%html.h-full.bg-gray-100
+%html.dark.h-full.bg-gray-900
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title= content_for(:title) || "Prompt Wars"
@@ -15,10 +15,10 @@
     = stylesheet_link_tag :app, "data-turbo-track": "reload"
     = stylesheet_link_tag "flowbite-3.1.2.min.css"
     = javascript_importmap_tags
-  %body.h-full.bg-gray-100.dark:bg-gray-900
+  %body.h-full.bg-gray-900
     = render partial: "layouts/nav"
     .container.mx-auto.p-6
       = render "shared/flash"
-      .bg-gray-800.rounded-lg.shadow-lg.p-6
+      .bg-gray-800.text-gray-100.rounded-lg.shadow-lg.p-6
         = yield
     = javascript_include_tag "flowbite-2.3.0.turbo.min.js"
