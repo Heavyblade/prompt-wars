@@ -13,7 +13,7 @@
     %link{:href => "/icon.svg", :rel => "icon", :type => "image/svg+xml"}/
     %link{:href => "/icon.png", :rel => "apple-touch-icon"}/
     = stylesheet_link_tag :app, "data-turbo-track": "reload"
-    = stylesheet_link_tag "flowbite-3.1.2.min.css"
+    %link{href: "https://cdn.jsdelivr.net/npm/flowbite@2.3.0/dist/flowbite.min.css", rel: "stylesheet"}
     = javascript_importmap_tags
   %body.h-full.bg-gray-900
     = render partial: "layouts/nav"

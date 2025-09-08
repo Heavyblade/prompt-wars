@@ -6,7 +6,7 @@
   = link_to "New Request", new_time_off_request_path, class: "px-3 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded"
 
 .relative.overflow-x-auto.shadow-md.sm:rounded-lg
-  %table.w-full.text-sm.text-left.text-gray-400.dark:text-gray-300
+  %table.w-full.text-sm.text-left.rtl:text-right.text-gray-500.dark:text-gray-400
     %thead.text-xs.uppercase.bg-gray-50.dark:bg-gray-700.dark:text-gray-400
       %tr
         %th.px-6.py-3 Type
@@ -17,10 +17,10 @@
     %tbody
       - if @time_off_requests.any?
         - @time_off_requests.each do |r|
-          %tr.border-b.dark:border-gray-700.odd:bg-white.odd:dark:bg-gray-900.even:bg-gray-50.even:dark:bg-gray-800
-            %td.px-6.py-4.font-medium.text-gray-900.dark:text-white= r.time_off_type.name
-            %td.px-6.py-4= r.start_date
-            %td.px-6.py-4= r.end_date
+          %tr.bg-white.border-b.dark:bg-gray-800.dark:border-gray-700.hover:bg-gray-50.dark:hover:bg-gray-600
+            %td.px-6.py-4.font-medium.text-gray-900.whitespace-nowrap.dark:text-white= r.time_off_type.name
+            %td.px-6.py-4.text-gray-900.dark:text-gray-300= r.start_date
+            %td.px-6.py-4.text-gray-900.dark:text-gray-300= r.end_date
             %td.px-6.py-4= status_badge(r.status)
             %td.px-6.py-4
               = link_to "Show", time_off_request_path(r), class: "text-blue-400 hover:text-blue-300"

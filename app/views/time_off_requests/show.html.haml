@@ -2,22 +2,27 @@
 
 %h1.text-2xl.font-semibold.mb-4.text-white Time-Off Request
 
-%div
-  %p
-    %strong Type:
-    = @time_off_request.time_off_type.name
-  %p
-    %strong Dates:
-    = @time_off_request.start_date
-    = " to "
-    = @time_off_request.end_date
-  %p
-    %strong Status:
-    = status_badge(@time_off_request.status)
+%div.space-y-4
+  %div.bg-gray-50.dark:bg-gray-700.p-4.rounded-lg
+    %p.text-gray-900.dark:text-gray-100
+      %strong.text-gray-700.dark:text-gray-300 Type:
+      %span.ml-2= @time_off_request.time_off_type.name
+  %div.bg-gray-50.dark:bg-gray-700.p-4.rounded-lg
+    %p.text-gray-900.dark:text-gray-100
+      %strong.text-gray-700.dark:text-gray-300 Dates:
+      %span.ml-2
+        = @time_off_request.start_date
+        = " to "
+        = @time_off_request.end_date
+  %div.bg-gray-50.dark:bg-gray-700.p-4.rounded-lg
+    %p.text-gray-900.dark:text-gray-100
+      %strong.text-gray-700.dark:text-gray-300 Status:
+      %span.ml-2= status_badge(@time_off_request.status)
   - if @time_off_request.reason.present?
-    %p
-      %strong Reason:
-      = @time_off_request.reason
+    %div.bg-gray-50.dark:bg-gray-700.p-4.rounded-lg
+      %p.text-gray-900.dark:text-gray-100
+        %strong.text-gray-700.dark:text-gray-300 Reason:
+        %span.ml-2= @time_off_request.reason
 
 %div.mt-4
   = link_to "Back", time_off_requests_path, class: "text-blue-400 hover:text-blue-300"

@@ -8,3 +8,26 @@
  *
  * Consider organizing styles into separate files for maintainability.
  */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom dark mode fixes */
+.dark {
+  color-scheme: dark;
+}
+
+/* Ensure proper text contrast in dark mode */
+.dark .text-gray-900:not(.dark\:text-white) {
+  color: rgb(243 244 246) !important;
+}
+
+/* Fix table text visibility */
+.dark table td {
+  color: rgb(209 213 219);
+}
+
+.dark table th {
+  color: rgb(156 163 175);
+}
