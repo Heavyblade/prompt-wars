@@ -1,0 +1,11 @@
+Hello #{@user&.full_name.presence || @user&.email},
+
+Your time-off request has been #{@decision}.
+
+Type: #{@request.time_off_type.name}
+Dates: #{@request.start_date} to #{@request.end_date}
+- if @request.reason.present?
+  Reason: #{@request.reason}
+
+You can view the request details by logging into the app.
+

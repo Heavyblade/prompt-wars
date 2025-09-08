@@ -1,0 +1,21 @@
+%p Hello #{@manager&.full_name.presence || @manager&.email},
+
+%p A new time-off request has been submitted by #{@request.user.full_name}.
+
+%p
+  %strong Type:
+  = @request.time_off_type.name
+
+%p
+  %strong Dates:
+  = @request.start_date
+  = " to "
+  = @request.end_date
+
+- if @request.reason.present?
+  %p
+    %strong Reason:
+    = @request.reason
+
+%p Please log in to review and take action.
+

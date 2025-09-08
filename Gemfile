@@ -45,6 +45,7 @@ gem "thruster", require: false
 
 gem "haml-rails"
 gem "clearance"
+gem "mission_control-jobs"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -58,6 +59,7 @@ group :development, :test do
   gem "rubocop-rails-omakase"
 
   gem "ruby-lsp", require: false
+  gem "letter_opener"
 end
 
 group :development do
