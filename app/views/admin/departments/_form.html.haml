@@ -1,17 +1,16 @@
 = form_with model: [:admin, @department] do |f|
   - if @department.errors.any?
-    %div.bg-red-900.text-red-100.p-3.rounded.mb-4
-      %ul
+    %div.flex.items-center.p-4.mb-4.text-sm.text-red-800.rounded-lg.bg-red-50.dark:bg-gray-800.dark:text-red-400{ role: 'alert' }
+      %ul.list-disc.list-inside
         - @department.errors.full_messages.each do |m|
           %li= m
 
   .mb-4
-    = f.label :name
-    = f.text_field :name, class: "border rounded px-3 py-2 w-full"
+    = f.label :name, class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+    = f.text_field :name, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
 
   .mb-4
-    = f.label :manager_id, "Manager"
-    = f.collection_select :manager_id, User.where(role: :manager).order(:email), :id, :email, include_blank: true, class: "border rounded px-3 py-2 w-full"
+    = f.label :manager_id, "Manager", class: "block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+    = f.collection_select :manager_id, User.where(role: :manager).order(:email), :id, :email, include_blank: true, class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white"
 
-  = f.submit class: "px-3 py-2 bg-blue-600 text-white rounded"
-
+  = f.submit "Save", class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
